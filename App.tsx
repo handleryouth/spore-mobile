@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { AppRegistry, LogBox } from "react-native";
+import { Provider } from "react-redux";
+import { NativeBaseProvider } from "native-base";
+
+import "react-native-gesture-handler";
+
+import { AppRoutes, store } from "./src";
+
+LogBox.ignoreLogs(["EventEmitter.addListener"]);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NativeBaseProvider>
+        <AppRoutes />
+      </NativeBaseProvider>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent("main", () => App);
