@@ -57,7 +57,7 @@ const Drawer = (props: DrawerContentComponentProps) => {
         label="New Released Albums"
         labelStyle={styles.linkText}
         onPress={() => {
-          props.navigation.navigate("Main");
+          props.navigation.navigate("NewAlbum");
         }}
       />
     </DrawerContentScrollView>

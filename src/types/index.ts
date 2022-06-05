@@ -57,6 +57,7 @@ export interface SpotifySearchResponse {
 
 export type DrawerStackParam = {
   Main: undefined;
+  NewAlbum: undefined;
 };
 
 export type AppNavigatorParams = {
@@ -65,3 +66,10 @@ export type AppNavigatorParams = {
 };
 
 export type NavigationProps = DrawerNavigationProp<DrawerStackParam>;
+
+export interface AlbumsResponseData {
+  items: AlbumProps[];
+  limit: number;
+  offset: number;
+  total: number;
+}

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AspectRatio, Center, Image, ScrollView, Text } from "native-base";
 
 import { Accordion } from "../components";
-import { AlbumProps, RootStackParamList } from "../types";
+import { AlbumProps, AppNavigatorParams } from "../types";
 import { requestHelper } from "../utils";
 
-type DetailsScreenProps = NativeStackScreenProps<RootStackParamList, "Details">;
+type DetailsScreenProps = NativeStackScreenProps<AppNavigatorParams, "Details">;
 
 const Details = ({ route }: DetailsScreenProps) => {
   const { albumId } = route.params;
@@ -66,5 +66,3 @@ const Details = ({ route }: DetailsScreenProps) => {
 };
 
 export default Details;
-
-const styles = StyleSheet.create({});

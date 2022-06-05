@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from "@react-navigation/stack";
@@ -34,4 +34,4 @@ const CustomCard = ({ image, title, id, totalTracks }: CustomCardProps) => {
   );
 };
 
-export default CustomCard;
+export default memo(CustomCard);

@@ -2,6 +2,7 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { Drawer } from "../components";
+import { NewAlbum } from "../screens";
 
 import AppNavigator from "./AppNavigator";
 
@@ -17,6 +18,7 @@ function DrawerNavigator() {
           headerShown: false,
         }}
       />
+      <Screen name="New Album" component={NewAlbum} />
     </Navigator>
   );
 }
