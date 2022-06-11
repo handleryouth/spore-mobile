@@ -13,16 +13,7 @@ export const discovery = {
 export const spotifyConfig = {
   responseType: ResponseType.Token,
   clientId: CLIENT_ID,
-  scopes: [
-    "user-read-currently-playing",
-    "user-read-recently-played",
-    "user-read-playback-state",
-    "user-top-read",
-    "user-modify-playback-state",
-    "streaming",
-    "user-read-email",
-    "user-read-private",
-  ],
+  scopes: ["playlist-modify-private", "playlist-read-private"],
   // In order to follow the "Authorization Code Flow"
   // to fetch token after authorizationEndpoint
   // this must be set to false

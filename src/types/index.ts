@@ -1,4 +1,3 @@
-import { DrawerNavigationProp } from "@react-navigation/drawer";
 export interface ArtistProps {
   href: string;
   id: string;
@@ -36,6 +35,7 @@ export interface CustomCardProps {
   selectCondition?: boolean;
   enabledDetails?: boolean;
   allowSelect?: boolean;
+  cardLink?: () => void;
 }
 
 export interface ImageData {
@@ -55,21 +55,32 @@ export interface SpotifySearchResponse {
   };
 }
 
-export type DrawerStackParam = {
-  Main: undefined;
-  NewAlbum: undefined;
-};
-
 export type AppNavigatorParams = {
   Home: undefined;
   Details: { albumId: string };
 };
 
-export type NavigationProps = DrawerNavigationProp<DrawerStackParam>;
+export type PlaylistNavigatorParams = {
+  Playlist: undefined;
+  "Playlist Detail": { playlistId: string };
+};
 
 export interface AlbumsResponseData {
   items: AlbumProps[];
   limit: number;
   offset: number;
   total: number;
+}
+
+export interface PlaylistResponse {
+  images: ImageData[];
+  name: string;
+  id: string;
+  owner: {
+    display_name: string;
+    id: string;
+  };
+  tracks: {
+    total: number;
+  };
 }

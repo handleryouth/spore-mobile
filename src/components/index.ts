@@ -2,6 +2,8 @@ export * from "./Accordion";
 export { default as Accordion } from "./Accordion";
 export * from "./CustomCard";
 export { default as Card } from "./CustomCard";
+export * from "./CustomInput";
+export { default as Input } from "./CustomInput";
 export * from "./Drawer";
 export { default as Drawer } from "./Drawer";
 export * from "./Header";

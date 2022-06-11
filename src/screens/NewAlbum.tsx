@@ -46,6 +46,7 @@ const NewAlbum = () => {
         <FlatList
           data={responseData}
           ItemSeparatorComponent={() => <View height={5} />}
+          initialNumToRender={5}
           renderItem={({ item, index }) => (
             <Card
               key={index}

@@ -1,13 +1,18 @@
 import React, { useCallback, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Button, Center, FlatList, Input, View } from "native-base";
 
 import { Card } from "../components";
-import { AlbumProps } from "../types";
+import { AlbumProps, AppNavigatorParams } from "../types";
 import { requestHelper } from "../utils";
+
+export type HomeScreenProps = StackNavigationProp<AppNavigatorParams>;
 
 const Home = () => {
   const [text, setText] = useState("");
   const [responseData, setResponseData] = useState<AlbumProps[]>([]);
+  const navigation = useNavigation<HomeScreenProps>();
 
   const handleSearch = useCallback(() => {
     requestHelper
@@ -43,8 +48,12 @@ const Home = () => {
         <FlatList
           data={responseData}
           ItemSeparatorComponent={() => <View height={5} />}
+          initialNumToRender={5}
           renderItem={({ item }) => (
             <Card
+              cardLink={() =>
+                navigation.navigate("Details", { albumId: item.id })
+              }
               id={item.id}
               totalTracks={item.total_tracks}
               image={item.images[0].url}

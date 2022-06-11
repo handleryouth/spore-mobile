@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -8,11 +8,12 @@ import {
 } from "@react-navigation/drawer";
 import { AspectRatio, Box, Image, Text, useTheme } from "native-base";
 
-import { RootState } from "../library";
+import { removeToken, RootState } from "../library";
 
 const Drawer = (props: DrawerContentComponentProps) => {
   const reduxState = useSelector((state: RootState) => state);
   const { colors } = useTheme();
+  const dispatch = useDispatch();
 
   return (
     <DrawerContentScrollView {...props}>
@@ -57,7 +58,31 @@ const Drawer = (props: DrawerContentComponentProps) => {
         label="New Released Albums"
         labelStyle={styles.linkText}
         onPress={() => {
-          props.navigation.navigate("NewAlbum");
+          props.navigation.navigate("New Album");
+        }}
+      />
+
+      <DrawerItem
+        label="Create Playlist"
+        labelStyle={styles.linkText}
+        onPress={() => {
+          props.navigation.navigate("Create Playlist");
+        }}
+      />
+
+      <DrawerItem
+        label="Your Playlist"
+        labelStyle={styles.linkText}
+        onPress={() => {
+          props.navigation.navigate("Your Playlist");
+        }}
+      />
+
+      <DrawerItem
+        label="Logout"
+        labelStyle={styles.linkText}
+        onPress={() => {
+          dispatch(removeToken());
         }}
       />
     </DrawerContentScrollView>

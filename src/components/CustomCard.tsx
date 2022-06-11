@@ -1,20 +1,18 @@
 import React, { memo } from "react";
 import { Pressable } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "@react-navigation/stack";
 import { AspectRatio, Box, Heading, Image, Text } from "native-base";
 
-import { AppNavigatorParams, CustomCardProps } from "../types";
+import { CustomCardProps } from "../types";
 
-export type HomeScreenProps = StackNavigationProp<AppNavigatorParams>;
-
-const CustomCard = ({ image, title, id, totalTracks }: CustomCardProps) => {
-  const navigation = useNavigation<HomeScreenProps>();
+const CustomCard = ({
+  image,
+  title,
+  totalTracks,
+  cardLink,
+}: CustomCardProps) => {
   return (
     <Box alignItems="center">
-      <Pressable
-        onPress={() => navigation.navigate("Details", { albumId: id })}
-      >
+      <Pressable onPress={cardLink}>
         <AspectRatio ratio={1 / 1} height={350} alignItems="center">
           <Image
             resizeMode="cover"
