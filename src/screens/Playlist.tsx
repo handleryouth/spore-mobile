@@ -32,7 +32,7 @@ const Playlist = () => {
   }, [handleGetPlaylist]);
 
   return (
-    <View>
+    <View paddingTop={5}>
       {playlist.length > 0 && (
         <FlatList
           data={playlist}
