@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rn-project2",
+    "name": "Spore React",
     "slug": "rn-project2",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.handleryouth.rnproject2"
     },
     "web": {
       "favicon": "./assets/favicon.png"

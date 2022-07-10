@@ -47,13 +47,28 @@ const Login = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Heading size="2xl" textAlign="center" marginBottom={2}>
-        Welcome to Mobile Spore{" "}
+      <Heading
+        size="2xl"
+        textAlign="center"
+        marginBottom={2}
+        fontFamily="heading"
+        fontWeight={800}
+      >
+        Welcome to Mobile Spore
       </Heading>
-      <Text fontSize={18} marginBottom={4}>
+      <Text fontSize={18} marginBottom={4} fontFamily="body" fontWeight={400}>
         Please grant access to your spotify
       </Text>
-      <Button onPress={() => promptAsync()}>Login</Button>
+      <Button onPress={() => promptAsync()} width="1/6">
+        <Text
+          fontFamily="body"
+          fontWeight={600}
+          fontStyle="normal"
+          color="white"
+        >
+          Login
+        </Text>
+      </Button>
     </View>
   );
 };

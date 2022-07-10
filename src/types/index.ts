@@ -84,3 +84,10 @@ export interface PlaylistResponse {
     total: number;
   };
 }
+
+export interface PlaylistDetailsResponse {
+  items: {
+    track: AlbumProps;
+  }[];
+  image: ImageData[];
+}

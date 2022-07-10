@@ -18,5 +18,5 @@ export const spotifyConfig = {
   // to fetch token after authorizationEndpoint
   // this must be set to false
   usePKCE: false,
-  redirectUri: "exp://192.168.1.8:19000/",
+  redirectUri: "exp://192.168.1.12:19000/",
 };

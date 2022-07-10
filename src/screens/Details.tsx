@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AspectRatio, Center, Image, ScrollView, Text } from "native-base";
+import {
+  AspectRatio,
+  Center,
+  Image,
+  ScrollView,
+  Stagger,
+  Text,
+} from "native-base";
 
 import { Accordion } from "../components";
 import { AlbumProps, AppNavigatorParams } from "../types";
@@ -41,26 +48,46 @@ const Details = ({ route }: DetailsScreenProps) => {
         </AspectRatio>
       </Center>
 
-      <Accordion title="Type">
-        <Text>{responseData.album_type}</Text>
-      </Accordion>
-      <Accordion title="Total Tracks">
-        <Text>{responseData.total_tracks}</Text>
-      </Accordion>
-      <Accordion title="Artists">
-        {
-          <View>
-            {responseData.artists.map((artist, index) => (
-              <Text key={index}>{artist.name}</Text>
-            ))}
-          </View>
-        }
-      </Accordion>
-      <Accordion title="Track Albums">
-        {responseData.tracks.items.map((track, index) => (
-          <Text key={index}>{track.name}</Text>
-        ))}
-      </Accordion>
+      <Stagger
+        visible
+        initial={{
+          opacity: 0,
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+          opacity: 1,
+          transition: {
+            type: "spring",
+            mass: 0.5,
+            stagger: {
+              offset: 30,
+            },
+            useNativeDriver: true,
+          },
+        }}
+      >
+        <Accordion title="Type">
+          <Text>{responseData.album_type}</Text>
+        </Accordion>
+        <Accordion title="Total Tracks">
+          <Text>{responseData.total_tracks}</Text>
+        </Accordion>
+        <Accordion title="Artists">
+          {
+            <View>
+              {responseData.artists.map((artist, index) => (
+                <Text key={index}>{artist.name}</Text>
+              ))}
+            </View>
+          }
+        </Accordion>
+        <Accordion title="Track Albums">
+          {responseData.tracks.items.map((track, index) => (
+            <Text key={index}>{track.name}</Text>
+          ))}
+        </Accordion>
+      </Stagger>
     </ScrollView>
   );
 };
