@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FlatList } from "react-native";
-import { Button, View } from "native-base";
+import { Box, Button, View } from "native-base";
 
 import { Card } from "../components";
 import { AlbumProps } from "../types";
@@ -46,7 +46,6 @@ const NewAlbum = () => {
         <FlatList
           data={responseData}
           ItemSeparatorComponent={() => <View height={5} />}
-          initialNumToRender={5}
           renderItem={({ item, index }) => (
             <Card
               key={index}
@@ -56,9 +55,21 @@ const NewAlbum = () => {
               title={item.name}
             />
           )}
+          ListFooterComponent={() => (
+            <Box alignItems="center">
+              <Button
+                colorScheme="blue"
+                onPress={handleFetchMore}
+                marginY={5}
+                minWidth={400}
+                width="3/4"
+              >
+                Add more
+              </Button>
+            </Box>
+          )}
         />
       )}
-      <Button onPress={handleFetchMore}>Add more</Button>
     </>
   );
 };

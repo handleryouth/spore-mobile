@@ -59,7 +59,13 @@ const Login = () => {
       <Text fontSize={18} marginBottom={4} fontFamily="body" fontWeight={400}>
         Please grant access to your spotify
       </Text>
-      <Button onPress={() => promptAsync()} width="1/6">
+      <Button
+        onPress={() => promptAsync()}
+        width="2/4"
+        minWidth={200}
+        maxWidth={300}
+        colorScheme="blue"
+      >
         <Text
           fontFamily="body"
           fontWeight={600}

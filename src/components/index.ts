@@ -6,6 +6,8 @@ export * from "./CustomInput";
 export { default as Input } from "./CustomInput";
 export * from "./Drawer";
 export { default as Drawer } from "./Drawer";
+export * from "./EmptyData";
+export { default as EmptyData } from "./EmptyData";
 export * from "./Header";
 export { default as Header } from "./Header";
 export * from "./View";
