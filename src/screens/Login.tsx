@@ -26,7 +26,9 @@ const Login = () => {
             Authorization: `Bearer ${value}`,
           },
         })
-        .then((res) => dispatch(addUserProfile(res.data)));
+        .then((res) => {
+          dispatch(addUserProfile(res.data));
+        });
     },
     [dispatch]
   );

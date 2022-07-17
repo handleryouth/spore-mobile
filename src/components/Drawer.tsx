@@ -12,6 +12,7 @@ import { removeToken, RootState } from "../library";
 
 const Drawer = (props: DrawerContentComponentProps) => {
   const reduxState = useSelector((state: RootState) => state);
+
   const { colors } = useTheme();
   const dispatch = useDispatch();
 

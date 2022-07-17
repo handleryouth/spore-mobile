@@ -1,36 +1,47 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Keyboard } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Button, Center, FlatList, Input, Spinner, View } from "native-base";
 
 import { Card, EmptyData } from "../components";
-import { requestLoading, RootState } from "../library";
-import { AlbumProps, AppNavigatorParams } from "../types";
-import { requestHelper } from "../utils";
+import {
+  AppNavigatorParams,
+  HomeAlbumRequest,
+  HomeAlbumResponse,
+} from "../types";
+import { useQuery } from "../utils";
 
 export type HomeScreenProps = StackNavigationProp<AppNavigatorParams>;
 
 const Home = () => {
   const [text, setText] = useState("");
-  const [responseData, setResponseData] = useState<AlbumProps[]>([]);
   const navigation = useNavigation<HomeScreenProps>();
-  const dispatch = useDispatch();
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.request
-  );
+
+  const { attemptRequest, data, loading } = useQuery<
+    HomeAlbumRequest,
+    HomeAlbumResponse
+  >({
+    endpoint: "/search",
+    method: "GET",
+    params: {
+      q: text.replace(/\s/g, "+"),
+      type: "album",
+      limit: 10,
+    },
+  });
 
   const getDataList = useMemo(() => {
     switch (loading) {
       case "idle":
         return <EmptyData height={400} message="looking for something ?" />;
-      case "pending":
+      case "loading":
         return <Spinner color="emerald.500" />;
       case "success":
-        return responseData.length > 0 ? (
+        return data && data.albums?.items?.length > 0 ? (
           <FlatList
-            data={responseData}
+            data={data.albums.items}
             ItemSeparatorComponent={() => <View height={5} />}
             initialNumToRender={5}
             renderItem={({ item }) => (
@@ -47,29 +58,21 @@ const Home = () => {
             keyExtractor={(item) => item.id}
           />
         ) : (
-          <EmptyData height={400} message="It's emty" />
+          <EmptyData
+            height={400}
+            message="It's empty"
+            icon={<Entypo name="circle-with-cross" size={50} color="red" />}
+          />
         );
       default:
         return;
     }
-  }, [loading, navigation, responseData]);
+  }, [data, loading, navigation]);
 
   const handleSearch = useCallback(() => {
     Keyboard.dismiss();
-    dispatch(requestLoading());
-
-    requestHelper
-      .get(`/search`, {
-        params: {
-          q: text.replace(/\s/g, "+"),
-          type: "album",
-          limit: 10,
-        },
-      })
-      .then((res) => {
-        setResponseData(res.data.albums.items);
-      });
-  }, [dispatch, text]);
+    attemptRequest();
+  }, [attemptRequest]);
 
   return (
     <>
@@ -82,7 +85,7 @@ const Home = () => {
           fontSize={16}
           maxWidth="300px"
           InputRightElement={
-            <Button size="lg" onPress={handleSearch}>
+            <Button size="lg" onPress={handleSearch} colorScheme="blue">
               Search
             </Button>
           }
