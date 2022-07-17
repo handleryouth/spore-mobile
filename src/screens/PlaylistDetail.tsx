@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AspectRatio, Center, Image, ScrollView, Text } from "native-base";
 
-import { Accordion } from "../components";
+import { Accordion, EmptyData } from "../components";
 import { PlaylistDetailsResponse, PlaylistNavigatorParams } from "../types";
 import { requestHelper } from "../utils";
 
@@ -38,7 +38,7 @@ const PlaylistDetail = ({ route }: PlaylistDetailScreenProps) => {
   }, [getAlbumDetail]);
 
   if (!responseData) {
-    return null;
+    return <EmptyData />;
   }
 
   return (

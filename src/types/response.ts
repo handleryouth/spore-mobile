@@ -1,4 +1,4 @@
-import { AlbumProps } from "./data";
+import { AlbumProps, ImageData } from "./data";
 
 export interface HomeAlbumResponse {
   albums: {
@@ -24,4 +24,11 @@ export interface PlaylistResponse {
   tracks: {
     total: number;
   };
+}
+
+export interface PlaylistDetailsResponse {
+  items: {
+    track: AlbumProps;
+  }[];
+  image: ImageData[];
 }
